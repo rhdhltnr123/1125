@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Humor API</title>
+  </head>
+  <body>
+    <h1>유머 앱</h1>
+    <div id="container"></div>
+
+    <script>
+      fetch("https://raw.githubusercontent.com/csslick/humor/main/humor.json")
+        .then(function (res) {
+          return res.json();
+        })
+        .then(function (data) {
+          // console.log(data.humors[0]);
+          let comment = data.humors[0].comment;
+          let author = data.humors[0].author;
+          console.log(comment, author);
+        });
+    </script>
+  </body>
+</html>

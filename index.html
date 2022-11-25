@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>humors</h1>
+    <p>comment : <span class="comment">comment</span></p>
+    <p>author :<span class="author">author</span></p>
+    <button class="next">다음</button>
+    <!-- index.json -->
+    <script>
+      let commentText = document.querySelector(".comment");
+      let authorText = document.querySelector(".author");
+      let btn = document.querySelector(".next");
+      let num = 0;
+
+      fetch("index.json")
+        .then(function (res) {
+          return res.json();
+        })
+        .then(function (data) {
+          btn.addEventListener("click", function () {
+            num++;
+            if (num == data.humors.length) {
+              num = 0;
+            }
+            let comment = data.humors[num].comment;
+            let author = data.humors[num].author;
+            commentText.innerHTML = comment;
+            authorText.innerHTML = author;
+          });
+        });
+    </script>
+  </body>
+</html>
